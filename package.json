@@ -1,8 +1,8 @@
 {
-  "name": "@jhwong/sqlite-parser",
+  "name": "sqlite-parser-cwx",
   "description": "JavaScript implentation of SQLite 3 query parser",
   "author": "Code School (http://codeschool.com)",
-  "version": "0.0.1",
+  "version": "1.0.",
   "contributors": [
     "Nick Wronski <nick@javascript.com>",
     "jhwong <123@jhwong.cn>"

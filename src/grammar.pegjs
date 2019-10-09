@@ -2890,7 +2890,7 @@ name_quoted
 
 name_unquoted
   = !( reserved_words / number_digit ) n:( unicode_char / name_char )+ {
-    return keyNode(n);
+    return textNode(n);
   }
 
 /**

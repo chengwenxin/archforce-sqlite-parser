@@ -3,7 +3,6 @@
  */
 
 {
-  //obj 为null,返回[]；为数组，直接返回；不为数组，返回[obj]
   function makeArray(arr) {
     if (!isOkay(arr)) {
       return [];
@@ -15,7 +14,6 @@
     return obj != null;
   }
 
-  //将数组 parts 合并为以glue为间隔的字符串
   function foldString(parts, glue = ' ') {
     const folded = parts
     .filter((part) => isOkay(part))
@@ -25,30 +23,25 @@
     return folded.trim();
   }
 
-  //key
   function foldStringWord(parts) {
     return foldString(parts, '');
   }
 
-  //value 全部转换为小写
   function foldStringKey(parts) {
     return foldString(parts).toLowerCase();
   }
 
-  //把arr的元素重新拼装为一个数组
   function flattenAll(arr) {
     return arr
     .filter((part) => isOkay(part))
     .reduce((prev, cur) => prev.concat(cur), []);
   }
 
-  //数组转为字符串时，去掉中间的 '',如 ['abc','def'] =>  'abc''def' => 'abcdef'
   function unescape(str, quoteChar = '\'') {
     const re = new RegExp(`${quoteChar}{2}`, 'g');
     return nodeToString(str).replace(re, quoteChar);
   }
 
-  //将数组直接转为字符串
   function nodeToString(node = []) {
     return makeArray(node).join('');
   }
@@ -57,22 +50,18 @@
    * A text node has
    * - no leading or trailing whitespace
    */
-  //数组转字符串
   function textNode(node) {
     return nodeToString(node).trim();
   }
   
-  //数组转字符串并转小写
   function keyNode(node) {
     return textNode(node).toLowerCase();
   }
 
-  //判断是否为数组、数组是否为空、arr[0]是否为空
   function isArrayOkay(arr) {
     return Array.isArray(arr) && arr.length > 0 && isOkay(arr[0]);
   }
 
-  //组装
   function composeBinary(first, rest) {
     return rest
     .reduce((left, [ x, operation, y, right ]) => {
@@ -93,19 +82,16 @@
  */
 
 /* Start Grammar */
-//分号隔开？？？
 start
   = o semi_optional s:( stmt_list )? semi_optional {
     return s;
   }
 
-//一个表达式？？？
 start_streaming
   = o semi_optional s:( stmt ) semi_optional  {
     return s;
   }
 
-//表达式
 stmt_list
   = f:( stmt ) o b:( stmt_list_tail )* {
     return {
@@ -115,11 +101,9 @@ stmt_list
     };
   }
 
-//可选分号
 semi_optional
   = ( sym_semi )*
 
-//必填分号
 semi_required
   = ( sym_semi )+
 
@@ -141,7 +125,6 @@ type_definition "Type Definition"
     return Object.assign(t, a);
   }
 
-//类型定义
 type_definition_types
   = n:( datatype_types ) {
     return {
